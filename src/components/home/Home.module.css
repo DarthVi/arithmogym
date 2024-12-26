@@ -1,15 +1,17 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 0.25rem;
 }
 
-.submit {
+.mt2 {
   margin-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+}
+
+.submit {
+  text-align: center;
 }
 
 .button {
@@ -45,8 +47,14 @@
 }
 
 .inputContainer {
-  margin-top: 2rem;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
+}
+
+@media screen and (max-width: 658px) {
+  .buttonContainer {
+    flex-direction: column;
+  }
 }

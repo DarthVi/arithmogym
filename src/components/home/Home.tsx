@@ -2,6 +2,7 @@ import {
   difficultyActions,
   operationActions,
   timerActions,
+  floatingPointActions,
 } from "../../store/slices.ts";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks.ts";
 import { Difficulty } from "../../engine/enums/difficulty.enum.ts";
@@ -17,6 +18,9 @@ const Home = (props: HomeProps) => {
   const operation = useAppSelector((state) => state.operation.operator);
   const difficulty = useAppSelector((state) => state.difficulty.difficulty);
   const timer = useAppSelector((state) => state.timer.timer);
+  const isFloatingPoint = useAppSelector(
+    (state) => state.floatingPoint.floatingPoint,
+  );
 
   const onDifficultyHandler = (diff: Difficulty) => {
     dispatch(difficultyActions.changeDifficulty(diff));
@@ -30,8 +34,16 @@ const Home = (props: HomeProps) => {
     dispatch(timerActions.changeTimer(time));
   };
 
+  const onFloatingPointHandler = () => {
+    dispatch(floatingPointActions.changeFloatingPoint());
+  };
+
+  const onSubmitHandler = () => {
+    props.onNextButtonClick();
+  };
+
   return (
-    <form onSubmit={props.onNextButtonClick}>
+    <form onSubmit={onSubmitHandler}>
       <div className={classes.main}>
         <h3>DIFFICULTY</h3>
         <div className={classes.buttonContainer}>
@@ -127,7 +139,16 @@ const Home = (props: HomeProps) => {
             Random
           </button>
         </div>
-        <div className={classes.inputContainer}>
+        <div className={[classes.buttonContainer, classes.mt2].join(" ")}>
+          <button
+            type="button"
+            className={isFloatingPoint ? classes.buttonActive : classes.button}
+            onClick={() => onFloatingPointHandler()}
+          >
+            Decimals {isFloatingPoint ? "Activated" : "Deactivated"}
+          </button>
+        </div>
+        <div className={[classes.inputContainer, classes.mt2].join(" ")}>
           <label htmlFor="timer">Timer: </label>
           <input
             type="number"
@@ -139,9 +160,9 @@ const Home = (props: HomeProps) => {
             onChange={(e) => onTimerHandler(parseInt(e.target.value))}
           />
         </div>
-        <div className={classes.submit}>
+        <div className={[classes.submit, classes.mt2].join(" ")}>
           <button className={classes.button} type="submit">
-            Next
+            Begin
           </button>
         </div>
       </div>

@@ -31,13 +31,7 @@ function* expressionGenerator(
   difficultyLevel: Difficulty,
   isFloatingPoint: boolean,
 ) {
-  let operator = operation;
-  if (operator === Operation.RANDOM) {
-    operator = operatorArray[getRandomInt(0, operator.length)];
-  }
-
   const getRandomNum = isFloatingPoint ? getRandomFloat : getRandomInt;
-
   let max: number = 0;
 
   switch (difficultyLevel) {
@@ -52,22 +46,29 @@ function* expressionGenerator(
       break;
   }
 
-  //avoid trivial expressions and division by 0 by starting from 2
-  const operand1 = getRandomNum(2, max + 1);
-  const operand2 = getRandomNum(2, max + 1);
+  while (true) {
+    let operator = operation;
+    if (operation === Operation.RANDOM) {
+      operator = operatorArray[getRandomInt(0, operator.length)];
+    }
 
-  const result = operationMap.get(operator)!(operand1, operand2);
-  let reminder: number | undefined = undefined;
+    //avoid trivial expressions and division by 0 by starting from 2
+    const operand1 = getRandomNum(2, max + 1);
+    const operand2 = getRandomNum(2, max + 1);
 
-  if (operator === Operation.DIV) reminder = operand1 % operand2;
+    const result = operationMap.get(operator)!(operand1, operand2);
+    let reminder: number | undefined = undefined;
 
-  yield {
-    operand1: operand1,
-    operand2: operand2,
-    operator: operator,
-    result: result,
-    reminder: reminder,
-  } as Expression;
+    if (operator === Operation.DIV) reminder = operand1 % operand2;
+
+    yield {
+      operand1: operand1,
+      operand2: operand2,
+      operator: operator,
+      result: result,
+      reminder: reminder,
+    } as Expression;
+  }
 }
 
 export default expressionGenerator;

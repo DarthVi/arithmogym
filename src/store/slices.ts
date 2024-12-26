@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { Difficulty } from "../engine/enums/difficulty.enum.ts";
 import { Operation } from "../engine/enums/operation.enum.ts";
 
@@ -44,17 +44,31 @@ const timerSlice = createSlice({
   },
 });
 
+const initialFloatingState = { floatingPoint: false };
+
+const floatingSlice = createSlice({
+  name: "floatingPoint",
+  initialState: initialFloatingState,
+  reducers: {
+    changeFloatingPoint: (state) => {
+      state.floatingPoint = !state.floatingPoint;
+    },
+  },
+});
+
 const store = configureStore({
   reducer: {
     difficulty: difficultySlice.reducer,
     operation: operationSlice.reducer,
     timer: timerSlice.reducer,
+    floatingPoint: floatingSlice.reducer,
   },
 });
 
 export const difficultyActions = difficultySlice.actions;
 export const operationActions = operationSlice.actions;
 export const timerActions = timerSlice.actions;
+export const floatingPointActions = floatingSlice.actions;
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
