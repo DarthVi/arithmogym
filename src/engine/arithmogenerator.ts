@@ -22,9 +22,9 @@ function getRandomFloat(min: number, max: number): number {
 }
 
 
-function* expressionGenerator(operation: Operation | 'random', difficultyLevel: Difficulty, isFloatingPoint: boolean) {
+function* expressionGenerator(operation: Operation, difficultyLevel: Difficulty, isFloatingPoint: boolean) {
     let operator = operation;
-    if (operator === 'random') {
+    if (operator === Operation.RANDOM) {
         operator = operatorArray[getRandomInt(0, operator.length)];
     }
 
@@ -36,7 +36,7 @@ function* expressionGenerator(operation: Operation | 'random', difficultyLevel: 
         case Difficulty.EASY:
             max = 9;
             break;
-        case Difficulty.NORMAL:
+        case Difficulty.MEDIUM:
             max = 99;
             break;
         case Difficulty.HARD:

@@ -35,10 +35,10 @@ const timerSlice = createSlice({
         changeTimer(state, action) {
             state.timer = action.payload;
         },
-        increase(state) {
+        increaseTimer(state) {
             state.timer++;
         },
-        decrease(state) {
+        decreaseTimer(state) {
             state.timer--;
         }
     },
@@ -55,5 +55,10 @@ const store = configureStore({
 export const difficultyActions = difficultySlice.actions;
 export const operationActions = operationSlice.actions;
 export const timerActions = timerSlice.actions;
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
 
 export default store;

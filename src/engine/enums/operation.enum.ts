@@ -3,4 +3,5 @@ export enum Operation {
     SUB = '-',
     MUL = 'x',
     DIV = '/',
+    RANDOM = 'random'
 }
