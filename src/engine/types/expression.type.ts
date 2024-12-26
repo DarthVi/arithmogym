@@ -1,9 +1,9 @@
-import {Operation} from "../enums/operation.enum.ts";
+import { Operation } from "../enums/operation.enum.ts";
 
 export interface Expression {
-    operand1: number;
-    operand2: number;
-    operator: Operation;
-    result: number;
-    reminder?: number;
+  operand1: number;
+  operand2: number;
+  operator: Operation;
+  result: number;
+  reminder?: number;
 }
