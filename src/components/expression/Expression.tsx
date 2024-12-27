@@ -1,15 +1,18 @@
 import { useAppSelector } from "../../hooks/hooks.ts";
 import classes from "./Expression.module.css";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import arithmogenerator from "../../engine/arithmogenerator.ts";
 import TimerBar from "../timerbar/TimerBar.tsx";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 interface ExpressionProps {
   onRedo: () => void;
 }
 
 const Expression = (props: ExpressionProps) => {
-  const [counter, setCounter] = useState(1);
+  const { width, height } = useWindowSize();
+  const [counter, setCounter] = useState(0);
   const [points, setPoints] = useState(0);
   const [correct, setCorrect] = useState(false);
   const [expired, setExpired] = useState(false);
@@ -28,6 +31,7 @@ const Expression = (props: ExpressionProps) => {
   const numExpression: number = 15;
 
   useEffect(() => {
+    guess.current?.focus();
     document.body.classList.remove("expired");
     if (counter > numExpression) return;
     if (time <= 0 && !correct) {
@@ -69,8 +73,9 @@ const Expression = (props: ExpressionProps) => {
 
   return (
     <>
-      {counter <= numExpression && (
+      {counter < numExpression && (
         <>
+          {correct && <Confetti width={width} height={height} />}
           <TimerBar
             key={counter}
             duration={timer}
@@ -99,10 +104,10 @@ const Expression = (props: ExpressionProps) => {
           </div>
         </>
       )}
-      {counter > numExpression && (
+      {counter >= numExpression && (
         <div className={classes.mainEnd}>
           <p>
-            Points: {points} correct of {counter - 1}
+            Points: {points} correct of {counter}
           </p>
           <button
             type="button"

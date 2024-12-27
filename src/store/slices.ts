@@ -26,7 +26,7 @@ const operationSlice = createSlice({
   },
 });
 
-const initialTimerState = { timer: 50 };
+const initialTimerState = { timer: 20 };
 
 const timerSlice = createSlice({
   name: "timer",
