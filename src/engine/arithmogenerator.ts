@@ -22,51 +22,52 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
-function getRandomFloat(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
-}
-
 function* expressionGenerator(
   operation: Operation,
   difficultyLevel: Difficulty,
-  isFloatingPoint: boolean,
 ): Generator<ExpressionType> {
-  const getRandomNum = isFloatingPoint ? getRandomFloat : getRandomInt;
+  const getRandomNum = getRandomInt;
   let max: number = 0;
 
   switch (difficultyLevel) {
     case Difficulty.EASY:
-      max = 9;
+      max = 10;
       break;
     case Difficulty.MEDIUM:
-      max = 99;
+      max = 100;
       break;
     case Difficulty.HARD:
-      max = 999;
+      max = 1000;
       break;
   }
 
   while (true) {
     let operator = operation;
     if (operation === Operation.RANDOM) {
-      operator = operatorArray[getRandomInt(0, operator.length)];
+      operator = operatorArray[getRandomInt(0, operatorArray.length)];
     }
 
+    let operand1: number;
+    let operand2: number;
+    let result: number;
+
     //avoid trivial expressions and division by 0 by starting from 2
-    const operand1 = getRandomNum(2, max + 1);
-    const operand2 = getRandomNum(2, max + 1);
+    if (operator === Operation.DIV) {
+      operand2 = getRandomNum(2, max);
+      result = getRandomNum(2, max);
+      operand1 = result * operand2;
+    } else {
+      operand1 = getRandomNum(2, max);
+      operand2 = getRandomNum(2, max);
 
-    const result = operationMap.get(operator)!(operand1, operand2);
-    let reminder: number | undefined = undefined;
-
-    if (operator === Operation.DIV) reminder = operand1 % operand2;
+      result = operationMap.get(operator)!(operand1, operand2);
+    }
 
     yield {
       operand1: operand1,
       operand2: operand2,
       operator: operator,
       result: result,
-      reminder: reminder,
     } as ExpressionType;
   }
 }

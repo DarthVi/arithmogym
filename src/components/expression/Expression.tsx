@@ -21,11 +21,8 @@ const Expression = (props: ExpressionProps) => {
   const difficulty = useAppSelector((state) => state.difficulty.difficulty);
   const timer = useAppSelector((state) => state.timer.timer);
   const [time, setTime] = useState(timer);
-  const isFloatingPoint = useAppSelector(
-    (state) => state.floatingPoint.floatingPoint,
-  );
 
-  const generator = arithmogenerator(operation, difficulty, isFloatingPoint);
+  const generator = arithmogenerator(operation, difficulty);
 
   const [expression, setExpression] = useState(generator.next().value);
   const numExpression: number = 15;

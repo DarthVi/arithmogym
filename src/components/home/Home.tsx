@@ -2,7 +2,6 @@ import {
   difficultyActions,
   operationActions,
   timerActions,
-  floatingPointActions,
 } from "../../store/slices.ts";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks.ts";
 import { Difficulty } from "../../engine/enums/difficulty.enum.ts";
@@ -18,9 +17,6 @@ const Home = (props: HomeProps) => {
   const operation = useAppSelector((state) => state.operation.operator);
   const difficulty = useAppSelector((state) => state.difficulty.difficulty);
   const timer = useAppSelector((state) => state.timer.timer);
-  const isFloatingPoint = useAppSelector(
-    (state) => state.floatingPoint.floatingPoint,
-  );
 
   const onDifficultyHandler = (diff: Difficulty) => {
     dispatch(difficultyActions.changeDifficulty(diff));
@@ -32,10 +28,6 @@ const Home = (props: HomeProps) => {
 
   const onTimerHandler = (time: number) => {
     dispatch(timerActions.changeTimer(time));
-  };
-
-  const onFloatingPointHandler = () => {
-    dispatch(floatingPointActions.changeFloatingPoint());
   };
 
   const onSubmitHandler = () => {
@@ -139,17 +131,6 @@ const Home = (props: HomeProps) => {
               onClick={() => onOperationHandler(Operation.RANDOM)}
             >
               Random
-            </button>
-          </div>
-          <div className={[classes.buttonContainer, classes.mt2].join(" ")}>
-            <button
-              type="button"
-              className={
-                isFloatingPoint ? classes.buttonActive : classes.button
-              }
-              onClick={() => onFloatingPointHandler()}
-            >
-              Decimals {isFloatingPoint ? "Activated" : "Deactivated"}
             </button>
           </div>
           <div className={[classes.inputContainer, classes.mt2].join(" ")}>

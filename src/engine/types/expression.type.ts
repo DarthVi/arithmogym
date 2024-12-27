@@ -5,5 +5,4 @@ export interface ExpressionType {
   operand2: number;
   operator: Operation;
   result: number;
-  reminder?: number;
 }
