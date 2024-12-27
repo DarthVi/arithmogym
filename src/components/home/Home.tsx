@@ -36,7 +36,7 @@ const Home = (props: HomeProps) => {
 
   return (
     <>
-      <h1>Arythmogym</h1>
+      <h1>Arithmogym</h1>
       <form onSubmit={onSubmitHandler}>
         <div className={classes.main}>
           <h3>DIFFICULTY</h3>
