@@ -1,0 +1,32 @@
+.roundTimeBar {
+  margin: 1rem;
+  overflow: hidden;
+  border: 3px solid white;
+  border-radius: 10px;
+}
+
+.roundTimeBar div {
+  width: 30rem;
+  height: 20px;
+  transform-origin: left center;
+  background: linear-gradient(to bottom, green, orange);
+}
+
+.roundTimeBarAnim {
+  animation: roundtime calc(var(--duration) * 1s) linear forwards;
+  animation-play-state: var(--paused);
+}
+
+.time {
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+}
+
+@keyframes roundtime {
+  to {
+    /* More performant than `width` */
+    transform: scaleX(0);
+  }
+}

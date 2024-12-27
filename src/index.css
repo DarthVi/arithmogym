@@ -70,3 +70,7 @@ button:focus-visible {
 .correct {
   background-color: green;
 }
+
+.expired {
+  background-color: red;
+}

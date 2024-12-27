@@ -159,9 +159,13 @@ const Home = (props: HomeProps) => {
               name="timer"
               id="timer"
               step="1"
-              min="20"
+              min="5"
               value={timer}
-              onChange={(e) => onTimerHandler(parseInt(e.target.value))}
+              onChange={(e) => {
+                if (!isNaN(parseInt(e.target.value))) {
+                  onTimerHandler(parseInt(e.target.value));
+                }
+              }}
             />
           </div>
           <div className={[classes.submit, classes.mt2].join(" ")}>
