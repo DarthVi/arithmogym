@@ -1,6 +1,6 @@
 import { Operation } from "./enums/operation.enum.ts";
 import { Difficulty } from "./enums/difficulty.enum.ts";
-import { Expression } from "./types/expression.type.ts";
+import { ExpressionType } from "./types/expression.type.ts";
 
 const operationMap: Map<Operation, (a: number, b: number) => number> = new Map([
   [Operation.ADD, (a, b) => a + b],
@@ -30,7 +30,7 @@ function* expressionGenerator(
   operation: Operation,
   difficultyLevel: Difficulty,
   isFloatingPoint: boolean,
-) {
+): Generator<ExpressionType> {
   const getRandomNum = isFloatingPoint ? getRandomFloat : getRandomInt;
   let max: number = 0;
 
@@ -67,7 +67,7 @@ function* expressionGenerator(
       operator: operator,
       result: result,
       reminder: reminder,
-    } as Expression;
+    } as ExpressionType;
   }
 }
 

@@ -3,6 +3,7 @@ import "./App.css";
 import { Provider } from "react-redux";
 import store from "./store/slices.ts";
 import Home from "./components/home/Home.tsx";
+import Expression from "./components/expression/Expression.tsx";
 
 function App() {
   const [started, setStarted] = useState(false);
@@ -11,10 +12,14 @@ function App() {
     setStarted(true);
   };
 
+  const redo = () => {
+    setStarted(false);
+  };
+
   return (
     <Provider store={store}>
       {!started && <Home onNextButtonClick={onNextClick} />}
-      {started && <p>{JSON.stringify(store.getState())}</p>}
+      {started && <Expression onRedo={redo} />}
     </Provider>
   );
 }

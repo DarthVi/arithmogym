@@ -1,6 +1,6 @@
 import { Operation } from "../enums/operation.enum.ts";
 
-export interface Expression {
+export interface ExpressionType {
   operand1: number;
   operand2: number;
   operator: Operation;
