@@ -5,6 +5,7 @@
 }
 
 .mainEnd {
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -13,13 +14,14 @@
 }
 
 .expression {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .expression span {
-  font-size: 10rem;
+  /*font-size: 10rem;*/
   font-weight: bold;
 }
 
@@ -56,9 +58,11 @@
 }
 
 @media screen and (max-width: 658px) {
+  /*
   .expression span {
     font-size: 5rem;
   }
+  */
 
   .next {
     font-size: 5rem;

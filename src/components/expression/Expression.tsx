@@ -5,6 +5,8 @@ import arithmogenerator from "../../engine/arithmogenerator.ts";
 import TimerBar from "../timerbar/TimerBar.tsx";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
+// @ts-ignore
+import { ReactFitty } from "react-fitty";
 
 interface ExpressionProps {
   onRedo: () => void;
@@ -81,17 +83,19 @@ const Expression = (props: ExpressionProps) => {
           />
           <div className={classes.main}>
             <div className={classes.expression}>
-              <span>{expression.operand1}</span>
-              <span>{expression.operator}</span>
-              <span>{expression.operand2}</span>
-              <span>=</span>
-              <span
-                className={classes.input}
-                contentEditable={!correct && !expired}
-                inputMode="decimal"
-                onInput={onChangeInput}
-                ref={guess}
-              ></span>
+              <ReactFitty>
+                <span>{expression.operand1}</span>
+                <span>{expression.operator}</span>
+                <span>{expression.operand2}</span>
+                <span>=</span>
+                <span
+                  className={classes.input}
+                  contentEditable={!correct && !expired}
+                  inputMode="decimal"
+                  onInput={onChangeInput}
+                  ref={guess}
+                ></span>
+              </ReactFitty>
             </div>
             {(expired || correct) && (
               <div className={classes.next} onClick={onNext}>
@@ -103,9 +107,11 @@ const Expression = (props: ExpressionProps) => {
       )}
       {counter >= numExpression && (
         <div className={classes.mainEnd}>
-          <p>
-            Points: {points} correct of {counter}
-          </p>
+          <ReactFitty>
+            <p>
+              Points: {points} correct of {counter}
+            </p>
+          </ReactFitty>
           <button
             type="button"
             className={classes.restartButton}
