@@ -18,39 +18,3 @@ customMiddleware.startListening({
       JSON.stringify(listenerApi.getState() as RootState),
     ),
 });
-
-/*export const difficultyMiddleware = createListenerMiddleware();
-difficultyMiddleware.startListening({
-  actionCreator: difficultyActions.changeDifficulty,
-  effect: (_action, listenerApi) =>
-    localStorage.setItem(
-      "difficulty",
-      JSON.stringify(
-        (listenerApi.getState() as RootState).difficulty.difficulty,
-      ),
-    ),
-});
-
-export const operationMiddleware = createListenerMiddleware();
-operationMiddleware.startListening({
-  actionCreator: operationActions.changeOperation,
-  effect: (_action, listenerApi) =>
-    localStorage.setItem(
-      "operation",
-      JSON.stringify((listenerApi.getState() as RootState).operation.operator),
-    ),
-});
-
-export const timerMiddelware = createListenerMiddleware();
-timerMiddelware.startListening({
-  matcher: isAnyOf(
-    timerActions.changeTimer,
-    timerActions.decreaseTimer,
-    timerActions.increaseTimer,
-  ),
-  effect: (_action, listenerApi) =>
-    localStorage.setItem(
-      "timer",
-      JSON.stringify((listenerApi.getState() as RootState).timer.timer),
-    ),
-});*/
