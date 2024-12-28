@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Provider } from "react-redux";
-import store from "./store/slices.ts";
+import store from "./store/store.ts";
 import Home from "./components/home/Home.tsx";
 import Expression from "./components/expression/Expression.tsx";
 
