@@ -22,7 +22,7 @@ const Home = (props: HomeProps) => {
     dispatch(difficultyActions.changeDifficulty(diff));
   };
 
-  const onOperationHandler = (op: Operation | string) => {
+  const onOperationHandler = (op: Operation) => {
     dispatch(operationActions.changeOperation(op));
   };
 
