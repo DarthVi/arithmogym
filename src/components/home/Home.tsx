@@ -26,8 +26,11 @@ const Home = (props: HomeProps) => {
     dispatch(operationActions.changeOperation(op));
   };
 
-  const onTimerHandler = (time: number) => {
-    dispatch(timerActions.changeTimer(time));
+  const onTimerHandler = (time: string) => {
+    if (time.length > 0) {
+      const val = parseInt(time);
+      dispatch(timerActions.changeTimer(val));
+    } else dispatch(timerActions.changeTimer(0));
   };
 
   const onSubmitHandler = () => {
@@ -141,12 +144,9 @@ const Home = (props: HomeProps) => {
               id="timer"
               step="1"
               min="5"
-              value={timer}
-              onChange={(e) => {
-                if (!isNaN(parseInt(e.target.value))) {
-                  onTimerHandler(parseInt(e.target.value));
-                }
-              }}
+              required={true}
+              value={timer > 0 ? timer : ""}
+              onChange={(e) => onTimerHandler(e.target.value)}
             />
           </div>
           <div className={[classes.submit, classes.mt2].join(" ")}>
