@@ -60,6 +60,18 @@ function* expressionGenerator(
       operand1 = getRandomNum(2, max);
       operand2 = getRandomNum(2, max);
 
+      //if we are generating subtraction on easy difficulty, swap the variables
+      //whenever the second operand is higher than the first
+      if (
+        operator === Operation.SUB &&
+        difficultyLevel == Difficulty.EASY &&
+        operand2 > operand1
+      ) {
+        const tmp = operand1;
+        operand1 = operand2;
+        operand2 = tmp;
+      }
+
       result = operationMap.get(operator)!(operand1, operand2);
     }
 

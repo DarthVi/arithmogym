@@ -63,10 +63,12 @@ const Expression = (props: ExpressionProps) => {
   };
 
   const onChangeInput = () => {
-    const val = Number(guess.current?.innerText);
-    if (val === expression.result) {
-      setCorrect(true);
-      document.body.classList.add("correct");
+    if (guess.current !== null && guess.current.innerText !== "") {
+      const val = Number(guess.current.innerText);
+      if (val === expression.result) {
+        setCorrect(true);
+        document.body.classList.add("correct");
+      }
     }
   };
 
