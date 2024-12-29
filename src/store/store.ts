@@ -20,6 +20,8 @@ function loadState() {
   }
 }
 
+//old preloadedState was of type PreloadedState, tried with Partial<RootState> and didn't work
+//it now works with RootState
 export function initStore(preloadedState?: RootState) {
   return configureStore({
     reducer,
