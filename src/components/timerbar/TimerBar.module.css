@@ -24,9 +24,21 @@
   font-weight: bold;
 }
 
+@media (prefers-color-scheme: light) {
+  .time {
+    color: black;
+  }
+}
+
 @keyframes roundtime {
   to {
     /* More performant than `width` */
     transform: scaleX(0);
+  }
+}
+
+@media screen and (max-width: 658px) {
+  .roundTimeBar {
+    width: 15rem;
   }
 }

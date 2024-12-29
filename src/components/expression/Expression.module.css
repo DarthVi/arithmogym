@@ -57,12 +57,27 @@
   min-width: 2rem;
 }
 
+@media (prefers-color-scheme: light) {
+  .next {
+    color: black;
+  }
+
+  .main {
+    color: black;
+  }
+}
+
 @media screen and (max-width: 658px) {
   /*
   .expression span {
     font-size: 5rem;
   }
   */
+
+  .expression,
+  .mainEnd {
+    width: 70%;
+  }
 
   .next {
     font-size: 5rem;
