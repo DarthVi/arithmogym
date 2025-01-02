@@ -1,50 +1,15 @@
-# React + TypeScript + Vite
+# Arithmogym
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a basic web app developed using React and Redux in order to generate basic
+arithmetic expressions useful for exercising children's arithmetic skills.
 
-Currently, two official plugins are available:
+This project has been created mainly as a way to practice using React, Redux and Typescript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Demo and where can I try it?
 
-## Expanding the ESLint configuration
+You can see the latest version in action [here on Vercel](https://arithmogym.vercel.app/).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Bugs and glitches
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Be aware that there may be some bug and glitches, I'll try to correct them if I can find some
+spare time from work.
