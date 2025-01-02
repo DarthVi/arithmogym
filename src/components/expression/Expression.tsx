@@ -56,6 +56,7 @@ const Expression = (props: ExpressionProps) => {
       setExpression(generator.next().value);
       setCounter((counter) => counter + 1);
       setCorrect(false);
+      setExpired(false);
       document.body.classList.remove("correct");
       guess.current?.setHTMLUnsafe("");
       setTime(timer);
